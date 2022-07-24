@@ -1,3 +1,4 @@
 venv/
 scraping/tests/*
 data/csv/nba_players_data.csv
+data/json_files/copy_players.json
