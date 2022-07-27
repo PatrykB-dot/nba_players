@@ -11,8 +11,12 @@ class MyDriver():
 
     def setup_method(self):
         print("setup method")
-        self.driver = webdriver.Chrome('C:\webdrivers\chromedriver.exe')
+        options = webdriver.ChromeOptions()
+        options.add_argument("--incognito")
+        options.add_argument("--disable-site-isolation-trials")
+        self.driver = webdriver.Chrome('C:\webdrivers\chromedriver.exe',chrome_options=options)
         self.input_search()
+        return self.urls_list
         
     def accept_cookies(self):
         self.driver.get('https://basketball-reference.com')
@@ -46,9 +50,7 @@ class MyDriver():
                     result_element.click()
                     # Append urls to list
                     self.urls_list.append(self.driver.current_url)
+                    print(f'adding {self.driver.current_url} to list')
         self.driver.quit()
-
-driver = MyDriver()
-driver.setup_method()
 
 
